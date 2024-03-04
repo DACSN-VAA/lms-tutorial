@@ -21,10 +21,9 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { Course } from "@prisma/client";
 interface DescriptionFormProps {
-  initialData: {
-    description: string;
-  };
+  initialData: Course;
   courseId: string;
 }
 
@@ -43,7 +42,7 @@ export const DescriptionForm = ({
   const router = useRouter();
   const from = useForm<z.infer<typeof fromSchema>>({
     resolver: zodResolver(fromSchema),
-    defaultValues: initialData,
+    defaultValues: { description: initialData?.description || "" },
   });
 
   const { isSubmitting, isValid } = from.formState;

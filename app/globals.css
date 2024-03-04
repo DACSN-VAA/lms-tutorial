@@ -31,3 +31,5 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@import "~@uploadthing/react/styles.css";

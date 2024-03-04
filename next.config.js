@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  env: {},
+  images: {
+    domains: ["utfs.io"],
+  },
 };
 
 module.exports = nextConfig;
