@@ -32,4 +32,8 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.ql-containert {
+  font-size: 16px !important;
+}
+
 @import "~@uploadthing/react/styles.css";

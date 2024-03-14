@@ -18,20 +18,23 @@ import { Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-interface TitleFormProps {
+interface ChapterTitleFormProps {
   initialData: {
     title: string;
   };
   courseId: string;
+  chapterId: string;
 }
 
 const fromSchema = z.object({
-  title: z.string().min(1, {
-    message: "Title is required",
-  }),
+  title: z.string().min(1),
 });
 
-export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
+export const ChapterTitleForm = ({
+  initialData,
+  courseId,
+  chapterId,
+}: ChapterTitleFormProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing((current) => !current);
   const router = useRouter();
@@ -44,8 +47,11 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof fromSchema>) => {
     try {
-      await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Courses updated");
+      await axios.patch(
+        `/api/courses/${courseId}/chapters/${chapterId}`,
+        values
+      );
+      toast.success("Chapter updated");
       toggleEdit();
       router.refresh();
     } catch {
@@ -56,7 +62,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course title
+        Chapter title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -83,7 +89,7 @@ export const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="ex: 'Advanced web development'"
+                      placeholder="ex: 'Introduce to the course'"
                       {...field}
                     />
                   </FormControl>
