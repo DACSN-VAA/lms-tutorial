@@ -91,7 +91,7 @@ export const ChaptersList = ({
                       <Badge
                         className={cn(
                           "bg-slate-500",
-                          chapter.isPublished && "bg-sky-700"
+                          chapter.isPublished && "bg-sky-400"
                         )}
                       >
                         {chapter.isPublished ? "Published" : "Draft"}
