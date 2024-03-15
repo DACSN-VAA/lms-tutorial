@@ -24,16 +24,10 @@ async function main() {
           name: "Accouting",
         },
         {
-          name: "Engineer",
+          name: "Engineering",
         },
         {
-          name: "C++",
-        },
-        {
-          name: "C#",
-        },
-        {
-          name: "Java",
+          name: "Filming",
         },
       ],
     });
